@@ -1,0 +1,7 @@
+terraform {
+  backend "s3" {
+    bucket  = "{TF_STATE_BUCKET_NAME}"
+    region  = "{TF_VAR_REGION}"
+    key     = "{TF_VAR_ENV}"
+  }
+}
