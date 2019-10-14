@@ -14,6 +14,6 @@
 
 ## Deployment
 
-* To verify without applying: `./scripts/plane.sh dev`
+* To verify without applying: `./scripts/plan.sh dev`
 * To create/update a deployment: `./scripts/apply.sh dev`
 * To delete the deployment: `./scripts/destroy.sh dev`
