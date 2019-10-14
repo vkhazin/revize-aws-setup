@@ -1,4 +1,4 @@
-# Revise Aws Setup Automation
+# Revize Aws Setup Automation
 
 ## One-time local setup
 
