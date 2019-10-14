@@ -12,3 +12,10 @@ variable "WEB_SERVER_AMI"                       {}
 variable "WEB_SERVER_INSTANCE_TYPE"             {}
 variable "KEYPAIR_NAME"                         {}
 variable "PROTECTED_LB"                         {}
+
+###############################################################################
+# Output
+###############################################################################
+output "WEB_SERVER_INSTANCE_ID" {
+  value = "${aws_instance.web-server.*.id}"
+}

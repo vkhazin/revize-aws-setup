@@ -23,7 +23,7 @@ resource "aws_instance" "web-server" {
   associate_public_ip_address   = true
   security_groups               = ["${aws_security_group.web-server-sg.id}"]
   iam_instance_profile          = "${aws_iam_instance_profile.ec2-instance-profile.name}"
-  # user_data                     = "${data.template_file.user-data.rendered}"
+  user_data                     = "${data.template_file.user-data.rendered}"
     
   tags = {
     Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server"

@@ -35,7 +35,8 @@ if($status){
 Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-choco install webpi
+choco install webpicmd -y
+refreshenv
 WebPICMD.exe /Install /Products:php
 
 $bucketName = "${s3-bucket-name}"
