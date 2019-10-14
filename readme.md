@@ -9,8 +9,8 @@
 
 ## Before Deployment
 
-* Create an s3 bucket to store terraform state in the desired region
-* Create ssh key pair in the desired region to decrypt Windows passwords
+* [Create an s3 bucket(https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)] to store terraform state in the desired region
+* Create [ssh key pair](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-keypairs.html) in the desired region to decrypt Windows passwords
 * Update [./envs/global.sh](./envs/global.sh) to reflect the new values
 
 ## Deployment

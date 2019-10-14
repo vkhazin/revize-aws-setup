@@ -11,3 +11,4 @@ variable "VPC_CIDR_BLOCK"                       {}
 variable "WEB_SERVER_AMI"                       {}
 variable "WEB_SERVER_INSTANCE_TYPE"             {}
 variable "KEYPAIR_NAME"                         {}
+variable "PROTECTED_LB"                         {}
