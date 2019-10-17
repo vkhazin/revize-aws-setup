@@ -9,6 +9,7 @@
 
 ## One-time local setup
 
+* Have handy or generate new [access key and secret](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for your account
 * Clone the repo
 * Run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-macos.sh`
 * Update [./envs/global.sh](./envs/global.sh) to reflect the new bucket name
