@@ -26,7 +26,7 @@ resource "aws_lb_listener" "web-server-listener-http" {
 }
 
 resource "aws_lb_target_group" "web-server-tg-http" {
-  name                          = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-http"
+  name                          = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-tg-http"
   port                          = 80
   protocol                      = "HTTP"
   target_type                   = "instance"

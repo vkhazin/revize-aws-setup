@@ -6,11 +6,11 @@ aws configure set default.region "${aws_region}"
 [System.Environment]::SetEnvironmentVariable('webcontent_bucket', "${webcontent_bucket}", [System.EnvironmentVariableTarget]::Machine)
 
 Enable-ScheduledTask -TaskName "${scheduled_task_name}"
-Start-ScheduledTask -TaskName "${scheduled_task_name}"
 
 if ("${stop_iis}" -eq "true") {
   net stop W3SVC
+  Set-Service W3SVC -StartupType Disabled
 }
 
-
-
+# To kick-off the scheduled task(s)
+Restart-Computer -Force
