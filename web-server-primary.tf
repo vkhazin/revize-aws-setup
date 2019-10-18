@@ -2,7 +2,7 @@ data "template_file" "web-server-primary-user-data" {
   template = <<EOF
     <powershell>
       ${file("./web-server/awscli-configure.ps1")}
-      Enable-ScheduledTask -TaskName "{scheduled_task_name}"
+      Enable-ScheduledTask -TaskName "${scheduled_task_name}"
     </powershell>
   EOF
 

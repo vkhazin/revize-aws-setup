@@ -3,7 +3,7 @@ data "template_file" "web-server-failover-user-data" {
     <powershell>
       net stop WAS
       ${file("./web-server/awscli-configure.ps1")}
-      Enable-ScheduledTask -TaskName "{scheduled_task_name}"
+      Enable-ScheduledTask -TaskName "${scheduled_task_name}"
     </powershell>
   EOF
 
