@@ -4,13 +4,13 @@
 
 * Launch ec2 instance with the provided AMI image
 * Connect to ec2 instance and configure desired features and deploy initial website content
-* Shut down the instance
+* `./web-server/ami-setup.ps1` has initial setup for a vanilla Windows Server
 * Create [custom AMI](https://aws.amazon.com/premiumsupport/knowledge-center/sysprep-create-install-ec2-windows-amis/) from the configured instance
 
 ## One-time local setup
 
 * Have handy or generate new [access key and secret](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for your account
-* Clone the repo
+* Clone the repo: `git clone git@github.com:vkhazin/revize-aws-setup.git`
 * MacOS, run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-macos.sh`
 * Cloud9,  run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-cloud9.sh`
 * Update [./envs/global.sh](./envs/global.sh) to reflect the new bucket name
@@ -27,7 +27,6 @@
 * To verify without applying: `./scripts/plan.sh dev`
 * To create/update a deployment: `./scripts/apply.sh dev`
 * To delete an existing deployment: `./scripts/destroy.sh dev`
-
 
 ## Operation
 
