@@ -39,4 +39,4 @@ Set-Service W3SVC -StartupType Automatic
 net start W3SVC
 ```
 * After w3svc services is running on failover instance  load balancer will be sending traffic to failover instance
-* ***important:*** the failover instance does not copy files from local system to s3 bucket
+* ***Important:*** the failover instance does not copy files from local system to s3 bucket
