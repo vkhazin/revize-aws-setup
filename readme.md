@@ -11,6 +11,7 @@
 
 * Have handy or generate new [access key and secret](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for your account
 * Clone the repo: `https://github.com/vkhazin/revize-aws-setup.git`
+* Run in terminal: `cd ./revize-aws-setup`
 * MacOS, run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-macos.sh`
 * Cloud9,  run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-cloud9.sh`
 * Update [./envs/global.sh](./envs/global.sh) to reflect the new bucket name
