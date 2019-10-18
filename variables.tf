@@ -14,8 +14,18 @@ variable "KEYPAIR_NAME"                         {}
 variable "PROTECTED_LB"                         {}
 
 ###############################################################################
+# Local
+###############################################################################
+locals {
+  public-subnets        = "${aws_subnet.public-subnet}"
+}
+
+###############################################################################
 # Output
 ###############################################################################
-output "WEB_SERVER_INSTANCE_ID" {
-  value = "${aws_instance.web-server.*.id}"
+output "WEB_SERVER_PRIMARY_INSTANCE_ID" {
+  value = "${aws_instance.web-server-primary.*.id}"
+}
+output "WEB_SERVER_FAILOVER_INSTANCE_ID" {
+  value = "${aws_instance.web-server-failover.*.id}"
 }

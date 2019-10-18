@@ -39,9 +39,14 @@ resource "aws_lb_target_group" "web-server-tg-http" {
   }  
 }
 
-resource "aws_lb_target_group_attachment" "web-server-tga-http" {
-  count                         = "${length(aws_instance.web-server)}"        
+resource "aws_lb_target_group_attachment" "web-server-primary-tga-http" {       
   target_group_arn              = "${aws_lb_target_group.web-server-tg-http.arn}"
-  target_id                     = "${aws_instance.web-server[count.index].id}"
+  target_id                     = "${aws_instance.web-server-primary.id}"
+  port                          = 80
+}
+
+resource "aws_lb_target_group_attachment" "web-server-failover-tga-http" {   
+  target_group_arn              = "${aws_lb_target_group.web-server-tg-http.arn}"
+  target_id                     = "${aws_instance.web-server-primary.id}"
   port                          = 80
 }
