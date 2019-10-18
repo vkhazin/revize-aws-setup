@@ -1,17 +1,18 @@
 data "template_file" "web-server-failover-user-data" {
   template = <<EOF
     <powershell>
-      net stop WAS
-      ${file("./web-server/awscli-configure.ps1")}
-      Enable-ScheduledTask -TaskName "${scheduled_task_name}"
+      ${file("./web-server/ec2-configure.ps1")}
     </powershell>
   EOF
 
   vars = {
-    aws_access_key_id           = "${aws_iam_access_key.s3-content-user-key.id}"
-    aws_secret_access_key       = "${aws_iam_access_key.s3-content-user-key.secret}"
+    aws_access_key_id           = "${aws_iam_access_key.s3-webserver-content-user-key.id}"
+    aws_secret_access_key       = "${aws_iam_access_key.s3-webserver-content-user-key.secret}"
     aws_region                  = "${var.REGION}"
+    webcontent_folder           = "${var.WEBCONTENT_FOLDER}"
+    webcontent_bucket           = "${aws_s3_bucket.s3-webserver-content.id}"
     scheduled_task_name         = "awscli-sync-from-bucket"
+    stop_iis                    = "true"
   }
 }
 
