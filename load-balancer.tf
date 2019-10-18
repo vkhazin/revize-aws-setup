@@ -47,6 +47,6 @@ resource "aws_lb_target_group_attachment" "web-server-primary-tga-http" {
 
 resource "aws_lb_target_group_attachment" "web-server-failover-tga-http" {   
   target_group_arn              = "${aws_lb_target_group.web-server-tg-http.arn}"
-  target_id                     = "${aws_instance.web-server-primary.id}"
+  target_id                     = "${aws_instance.web-server-failover.id}"
   port                          = 80
 }
