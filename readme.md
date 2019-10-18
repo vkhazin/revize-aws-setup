@@ -11,7 +11,8 @@
 
 * Have handy or generate new [access key and secret](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for your account
 * Clone the repo
-* Run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-macos.sh`
+* MacOS, run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-macos.sh`
+* Cloud9,  run in terminal: `find . -name "*.sh" -exec chmod +rx {} \; && ./scripts/local-setup-cloud9.sh`
 * Update [./envs/global.sh](./envs/global.sh) to reflect the new bucket name
 
 ## Before Deployment
@@ -28,8 +29,14 @@
 * To delete an existing deployment: `./scripts/destroy.sh dev`
 
 
-### TODO:
+## Operation
 
-1. scheduled task did not get enabled on failover
-1. ~/.aws/config did not include key/secret
-1. did not verify machine env vars were set
+* Primary instance copies new and updated files from `c:\revize\web` folder to s3 bucket
+* Failover instance copies new and updated files from s3 bucket to `c:\revize\web` folder
+* Load balancer dns is sending traffic to primary instance only
+* When primary instance is down failover instance requires manual intervention: enabling and starting w3svc service:
+```
+Set-Service W3SVC -StartupType Automatic
+net start W3SVC
+```
+* After w3svc services is running on failover instance  load balancer will be sending traffic to failover instance
