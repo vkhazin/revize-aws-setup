@@ -16,24 +16,24 @@ resource "aws_iam_access_key" "s3-content-user-key" {
 resource "aws_iam_policy" "s3-content-user-policy" {
   name        = "${var.TAG_CUSTOMER_NAME}-${var.TAG_ENV_NAME}-s3-content-user-policy"
   policy      = <<EOF
-  {
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": [
-          "s3:GetObject",
-          "s3:ListBucket",
-          "s3:PutObject",
-          "s3:DeleteObject"
-        ],
-        "Resource": [
-          "${aws_s3_bucket.s3-content.arn}*"
-        ]
-      }
-    ]
-  }
-  EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "${aws_s3_bucket.s3-content.arn}/*"
+      ]
+    }
+  ]
+}
+EOF
 }
 
 resource "aws_iam_user_policy_attachment" "s3-content-user-policy-attachment" {
