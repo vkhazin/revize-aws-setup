@@ -2,7 +2,7 @@ data "template_file" "web-server-primary-user-data" {
   template = <<EOF
     <powershell>
       ${file("./web-server/awscli-configure.ps1")}
-      Enable-ScheduledTask -TaskName awscli-sync-to-bucket
+      Enable-ScheduledTask -TaskName "{scheduled_task_name}"
     </powershell>
   EOF
 
@@ -10,6 +10,7 @@ data "template_file" "web-server-primary-user-data" {
     aws_access_key_id           = "${aws_iam_access_key.s3-content-user-key.id}"
     aws_secret_access_key       = "${aws_iam_access_key.s3-content-user-key.secret}"
     aws_region                  = "${var.REGION}"
+    scheduled_task_name         = "awscli-sync-to-bucket"
   }
 }
 resource "aws_instance" "web-server-primary" {

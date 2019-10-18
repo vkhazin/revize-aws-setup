@@ -2,8 +2,8 @@
 
 ## Building your AMI for Windows Server
 
-* Launch ec2 instance with the desired operating system
-* Connect to ec2 instance and configure desired features
+* Launch ec2 instance with the provided AMI image
+* Connect to ec2 instance and configure desired features and deploy initial website content
 * Shut down the instance
 * Create [custom AMI](https://aws.amazon.com/premiumsupport/knowledge-center/sysprep-create-install-ec2-windows-amis/) from the configured instance
 
@@ -26,3 +26,10 @@
 * To verify without applying: `./scripts/plan.sh dev`
 * To create/update a deployment: `./scripts/apply.sh dev`
 * To delete an existing deployment: `./scripts/destroy.sh dev`
+
+
+### TODO:
+
+1. scheduled task did not get enabled on failover
+1. ~/.aws/config did not include key/secret
+1. did not verify machine env vars were set
