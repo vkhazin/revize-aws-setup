@@ -6,23 +6,18 @@
     <URI>\awscli-sync-from-bucket</URI>
   </RegistrationInfo>
   <Triggers>
-    <CalendarTrigger>
+    <BootTrigger>
       <Repetition>
         <Interval>PT5M</Interval>
-        <Duration>P1D</Duration>
         <StopAtDurationEnd>false</StopAtDurationEnd>
       </Repetition>
-      <StartBoundary>2019-10-18T00:00:00</StartBoundary>
       <ExecutionTimeLimit>P1D</ExecutionTimeLimit>
-      <Enabled>true</Enabled>
-      <ScheduleByDay>
-        <DaysInterval>1</DaysInterval>
-      </ScheduleByDay>
-    </CalendarTrigger>
+      <Enabled>false</Enabled>
+    </BootTrigger>
   </Triggers>
   <Principals>
     <Principal id="Author">
-      <UserId>S-1-5-21-2373002294-500805120-4049372383-500</UserId>
+      <UserId>S-1-5-21-3800469546-7132596-2686337478-500</UserId>
       <LogonType>S4U</LogonType>
       <RunLevel>LeastPrivilege</RunLevel>
     </Principal>
