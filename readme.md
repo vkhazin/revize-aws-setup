@@ -1,5 +1,22 @@
 # Revize Aws Setup Automation
 
+## Requirements
+
+![](./docs/media/aws-iis-failover.jpg)
+
+1. Create automation to launch two ec2 instances running Windows Server 2019
+1. The instances will be provisioned from a custom built AMI image with IIS configured manually
+1. The primary instance will automatically sync data to S3 bucket
+1. The fail-over instance will automatically sync data from S3 bucket
+1. A load balancer will be configured pointing to both instances
+1. The primary instance will have W3SVC running on launch and will serve all the traffic
+1. The fail-over instance will be launched with W3SVC disabled
+1. The primary instance will have periodic snapshots taken in automated fashion
+1. Switching to a fail-over instance will require manual intervention to enable and to start W3SVC
+1. Restoring primary instance from a snapshot will be a manual procedure
+1. Publishing data from a customer CMS to the primary instance is out-of-scope
+
+
 ## Building your AMI for Windows Server
 
 * Launch ec2 instance with the provided AMI image
