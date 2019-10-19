@@ -14,7 +14,7 @@
 1. The primary instance will have periodic snapshots taken in automated fashion
 1. Switching to a fail-over instance will require manual intervention to enable and to start W3SVC
 1. Restoring primary instance from a snapshot will be a manual procedure
-1. Publishing data from a customer CMS to the primary instance is out-of-scope
+1. Publishing data from a customer CMS to the primary instance is out-of-scope for this deliverable
 
 
 ## Building your AMI for Windows Server
