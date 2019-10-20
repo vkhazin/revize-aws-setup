@@ -14,6 +14,7 @@ variable "WEB_SERVER_VOLUME_SIZE"               {}
 variable "KEYPAIR_NAME"                         {}
 variable "PROTECT_FROM_DELETE"                  {}
 variable "WEBCONTENT_FOLDER"                    {}
+variable "SCRIPTS_FOLDER"                       {}
 variable "DLM_SNAPSHOTS_TO_RETAIN"              {}
 variable "DLM_SNAPSHOTS_INTERVAL"               {}
 

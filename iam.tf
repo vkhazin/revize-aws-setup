@@ -29,7 +29,8 @@ resource "aws_iam_policy" "s3-webserver-content-user-policy" {
       ],
       "Resource": [
           "arn:aws:s3:::*/*",
-          "${aws_s3_bucket.s3-webserver-content.arn}"
+          "${aws_s3_bucket.s3-webserver-content.arn}",
+          "${aws_s3_bucket.s3-iisconfig.arn}"
       ]      
     }
   ]

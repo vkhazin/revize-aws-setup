@@ -11,19 +11,12 @@ data "template_file" "web-server-primary-user-data" {
     aws_region                  = "${var.REGION}"
     webcontent_folder           = "${var.WEBCONTENT_FOLDER}"
     webcontent_bucket           = "${aws_s3_bucket.s3-webserver-content.id}"
+    iisconfig_bucket            = "${aws_s3_bucket.s3-iisconfig.id}"
     scheduled_task_name         = "awscli-sync-to-bucket"
     stop_iis                    = "false"
   }
 }
 
-# resource "aws_ebs_volume" "web-server-primary-volume" {
-#   availability_zone = "${local.awsZones[0]}"
-#   size              = "${var.WEB_SERVER_VOLUME_SIZE}"
-
-#   tags = {
-#     Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-primary-volume"
-#   }
-# }
 
 resource "aws_instance" "web-server-primary" {
   ami                           = "${var.WEB_SERVER_AMI}"
@@ -32,10 +25,8 @@ resource "aws_instance" "web-server-primary" {
   subnet_id                     = "${aws_subnet.public-subnet[0].id}"
   associate_public_ip_address   = true
   security_groups               = ["${aws_security_group.web-server-sg.id}"]
-  # https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html
-  # Log file: C:\ProgramData\Amazon\EC2-Windows\Launch\Log\UserdataExecution.log
   user_data                     = "${data.template_file.web-server-primary-user-data.rendered}"
-    
+
   tags = {
     Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-primary"
     Organization                = "${var.TAG_CUSTOMER_NAME}"
@@ -46,9 +37,3 @@ resource "aws_instance" "web-server-primary" {
     Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-primary-volume"
   }
 }
-
-# resource "aws_volume_attachment" "web-server-primary-volume-attachment" {
-#   device_name = "/dev/sda"
-#   volume_id   = "${aws_ebs_volume.web-server-primary-volume.id}"
-#   instance_id = "${aws_instance.web-server-primary.id}"
-# }

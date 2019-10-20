@@ -47,8 +47,10 @@
 
 ## Operation
 
-* Primary instance copies new and updated files from `c:\revize\web` folder to s3 bucket every 5 mins
-* Failover instance copies new and updated files from s3 bucket to `c:\revize\web` folder every 5 mins
+* Primary instance copies new and updated files from `c:\revize\web` folder to webcontent bucket every 5 mins
+* Primary instance copies new and update files from `$env:windir\System32\Inetsrv\Config\` folder to iisconfig bucket every 5 minutes
+* iisconfig bucket has [versioning](https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html) enabled
+* Failover instance copies new and updated files from s3 webcontent and iisconfig buckets every 5 mins
 * Load balancer is sending traffic to the primary instance only
 * When primary instance is down failover instance requires manual intervention: enabling and starting w3svc service:
 ```
@@ -57,3 +59,5 @@ net start W3SVC
 ```
 * After w3svc services is running on failover instance  load balancer will be sending traffic to failover instance
 * ***Important:*** the failover instance does not copy files from local system to s3 bucket
+* Primary instance volume snapshot is backed-up using [Amazon EBS Snapshot life-cycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html)
+* To restore primary web server instance from a snapshot follow [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html)

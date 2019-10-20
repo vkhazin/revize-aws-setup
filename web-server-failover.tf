@@ -11,12 +11,13 @@ data "template_file" "web-server-failover-user-data" {
     aws_region                  = "${var.REGION}"
     webcontent_folder           = "${var.WEBCONTENT_FOLDER}"
     webcontent_bucket           = "${aws_s3_bucket.s3-webserver-content.id}"
+    iisconfig_bucket            = "${aws_s3_bucket.s3-iisconfig.id}"
     scheduled_task_name         = "awscli-sync-from-bucket"
     stop_iis                    = "true"
   }
 }
 
-resource "aws_instance" "web-server-" {
+resource "aws_instance" "web-server-failover" {
   ami                           = "${var.WEB_SERVER_AMI}"
   instance_type                 = "${var.WEB_SERVER_INSTANCE_TYPE}"
   key_name                      = "${var.KEYPAIR_NAME}"
@@ -24,14 +25,14 @@ resource "aws_instance" "web-server-" {
   associate_public_ip_address   = true
   security_groups               = ["${aws_security_group.web-server-sg.id}"]
   user_data                     = "${data.template_file.web-server-failover-user-data.rendered}"
-    
+
   tags = {
     Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-failover"
     Organization                = "${var.TAG_CUSTOMER_NAME}"
     Project                     = "${var.TAG_ENV_NAME}"  
   }
 
-  target_tags = {
+  volume_tags = {
     Name                          = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-failover-volume"
   }  
 }
