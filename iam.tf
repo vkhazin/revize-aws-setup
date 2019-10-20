@@ -41,3 +41,23 @@ resource "aws_iam_user_policy_attachment" "s3-webserver-content-user-policy-atta
   user       = "${aws_iam_user.s3-webserver-content-user.name}"
   policy_arn = "${aws_iam_policy.s3-webserver-content-user-policy.arn}"
 }
+
+resource "aws_iam_role" "dlm_lifecycle_role" {
+  name = "dlm-lifecycle-role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "dlm.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}

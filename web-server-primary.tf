@@ -15,6 +15,16 @@ data "template_file" "web-server-primary-user-data" {
     stop_iis                    = "false"
   }
 }
+
+# resource "aws_ebs_volume" "web-server-primary-volume" {
+#   availability_zone = "${local.awsZones[0]}"
+#   size              = "${var.WEB_SERVER_VOLUME_SIZE}"
+
+#   tags = {
+#     Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-primary-volume"
+#   }
+# }
+
 resource "aws_instance" "web-server-primary" {
   ami                           = "${var.WEB_SERVER_AMI}"
   instance_type                 = "${var.WEB_SERVER_INSTANCE_TYPE}"
@@ -31,4 +41,14 @@ resource "aws_instance" "web-server-primary" {
     Organization                = "${var.TAG_CUSTOMER_NAME}"
     Project                     = "${var.TAG_ENV_NAME}"  
   }
+
+  volume_tags = {
+    Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-primary-volume"
+  }
 }
+
+# resource "aws_volume_attachment" "web-server-primary-volume-attachment" {
+#   device_name = "/dev/sda"
+#   volume_id   = "${aws_ebs_volume.web-server-primary-volume.id}"
+#   instance_id = "${aws_instance.web-server-primary.id}"
+# }

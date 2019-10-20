@@ -16,7 +16,7 @@ data "template_file" "web-server-failover-user-data" {
   }
 }
 
-resource "aws_instance" "web-server-failover" {
+resource "aws_instance" "web-server-" {
   ami                           = "${var.WEB_SERVER_AMI}"
   instance_type                 = "${var.WEB_SERVER_INSTANCE_TYPE}"
   key_name                      = "${var.KEYPAIR_NAME}"
@@ -30,4 +30,8 @@ resource "aws_instance" "web-server-failover" {
     Organization                = "${var.TAG_CUSTOMER_NAME}"
     Project                     = "${var.TAG_ENV_NAME}"  
   }
+
+  target_tags = {
+    Name                          = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-failover-volume"
+  }  
 }

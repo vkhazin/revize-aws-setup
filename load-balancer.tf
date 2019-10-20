@@ -5,7 +5,7 @@ resource "aws_lb" "web-server-lb" {
   security_groups               = ["${aws_security_group.web-server-sg.id}"]
   subnets                       = "${aws_subnet.public-subnet.*.id}"
   # to keep the ip?
-  enable_deletion_protection    = "${var.PROTECT_LB_FROM_DELETE}"
+  enable_deletion_protection    = "${var.PROTECT_FROM_DELETE}"
 
   tags = {
     Name                        = "${var.TAG_DEPLOYMENT_PREFIX}-web-server-lb"

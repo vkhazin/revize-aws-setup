@@ -10,15 +10,19 @@ variable "ZONES"                                {}
 variable "VPC_CIDR_BLOCK"                       {}
 variable "WEB_SERVER_AMI"                       {}
 variable "WEB_SERVER_INSTANCE_TYPE"             {}
+variable "WEB_SERVER_VOLUME_SIZE"               {}
 variable "KEYPAIR_NAME"                         {}
-variable "PROTECT_LB_FROM_DELETE"               {}
+variable "PROTECT_FROM_DELETE"                  {}
 variable "WEBCONTENT_FOLDER"                    {}
+variable "DLM_SNAPSHOTS_TO_RETAIN"              {}
+variable "DLM_SNAPSHOTS_INTERVAL"               {}
 
 ###############################################################################
 # Local
 ###############################################################################
 locals {
-  public-subnets        = "${aws_subnet.public-subnet}"
+  awsZones      = "${split(",", var.ZONES)}"
+  azCount       = "${length(local.awsZones)}"  
 }
 
 ###############################################################################

@@ -30,12 +30,6 @@ resource "aws_internet_gateway" "igw" {
   } 
 }
 
-#https://github.com/hashicorp/terraform/issues/58
-locals {
-  awsZones      = "${split(",", var.ZONES)}"
-  azCount       = "${length(local.awsZones)}"
-}
-
 # Create public subnets in all availability zones
 resource "aws_subnet" "public-subnet" {
   vpc_id                  = "${aws_vpc.vpc.id}"
