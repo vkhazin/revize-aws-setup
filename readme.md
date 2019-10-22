@@ -64,10 +64,12 @@ net start W3SVC
 
 ### Next Step: Configuration Management
 
-1. A solution tailored to current skills set with Windows platform:
-![](./docs/media/aws-iis-failover.jpg)
+#### Windows based
 
-1. A solution tailored toward a more robust functionality:
+![](./docs/media/win-active-active.jpg)
+
+#### Container based
+
 * ESC, Fargate, or EKS custer
 * Immutable containers per customer
 * Docker image modification when existing customer configuration changes
