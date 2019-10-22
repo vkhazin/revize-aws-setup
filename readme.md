@@ -61,3 +61,15 @@ net start W3SVC
 * ***Important:*** the failover instance does not copy files from local system to s3 bucket
 * Primary instance volume snapshot is backed-up using [Amazon EBS Snapshot life-cycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html)
 * To restore primary web server instance from a snapshot follow [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html)
+
+### Next Step: Configuration Management
+
+1. A solution tailored to current skills set with Windows platform:
+![](./docs/media/![](./docs/media/aws-iis-failover.jpg)
+
+1. A solution tailored toward a more robust functionality:
+* ESC, Fargate, or EKS custer
+* Immutable containers per customer
+* Docker image modification when existing customer configuration changes
+* Kubernetes deployment and configuration
+* Traffic shaping for canary releases and/or A/B testing
