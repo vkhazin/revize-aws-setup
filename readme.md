@@ -65,7 +65,7 @@ net start W3SVC
 ### Next Step: Configuration Management
 
 1. A solution tailored to current skills set with Windows platform:
-![](./docs/media/![](./docs/media/aws-iis-failover.jpg)
+![](./docs/media/aws-iis-failover.jpg)
 
 1. A solution tailored toward a more robust functionality:
 * ESC, Fargate, or EKS custer
